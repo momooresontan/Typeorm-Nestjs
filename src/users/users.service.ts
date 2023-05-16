@@ -24,11 +24,16 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    //return this.usersRepository.update(id, updateUserDto);
+    const user = await this.findOne(id);
+    return this.usersRepository.save({ ...user, ...updateUserDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    //return this.usersRepository.delete(id);
+    const user = await this.findOne(id);
+
+    return this.usersRepository.remove(user);
   }
 }
