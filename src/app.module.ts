@@ -6,7 +6,7 @@ import { UsersModule } from './users/users.module';
 import { dataSourceOptions } from '../db/data-source';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({ dataSourceOptions }), UsersModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
